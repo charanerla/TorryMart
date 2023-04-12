@@ -1,0 +1,27 @@
+<div class="main-orders-container">
+  <app-header class="fixed-top" [myCartCount]="myCartCount"></app-header>
+  <div class="sub-container">
+    <div *ngIf="myOrders.length === 0" class="no-orders-container">
+      <h1 class="text-center">
+        You have not placed any orders... <a routerLink="/home">Shop Now</a>
+      </h1>
+    </div>
+    <div class="orders-body-container" *ngIf="myOrders.length !== 0">
+      <h1 class="heading">Your Orders</h1>
+      <ul class="my-orders-list">
+        <li class="my-order-item" *ngFor="let order of myOrders">
+          <img [src]="order.thumbnail" class="w-25" />
+          <div class="description-container">
+            <h6 class="order-heading">{{ order.title }}</h6>
+            <h6 class="m-0">
+              <i class="bi bi-currency-rupee"></i> {{ order.totalPrice }}
+            </h6>
+            <div class="delivery-details">
+              Delivered on:{{ order.expected_delivery_date }}
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

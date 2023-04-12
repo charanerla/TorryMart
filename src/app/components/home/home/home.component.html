@@ -1,0 +1,104 @@
+<div class="main-home-container">
+  <app-header class="fixed-top" [myCartCount]="myCartCount"></app-header>
+  <div class="home-body">
+    <h1 class="home-heading">
+      Discover endless possibilities, all in one place.
+    </h1>
+    <!-- <ul class="categories-list">
+      <li *ngFor="let category of categoriesList" class="category-item">
+        <button type="button" class="category-button">
+          <img
+            src="{{ category.categoryUrl }}"
+            alt="category-img"
+            class="category-img"
+          />
+          <h1>{{ category.categoryName }}</h1>
+        </button>
+      </li>
+    </ul> -->
+    <div class="text-center custom-spin" *ngIf="isDataFetching">
+      <div class="spinner-border" style="color: aliceblue" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <!-- <ng-container *ngIf="!isDataFetching">
+      <ng-container
+        *ngFor="let category of categoriesList; trackBy: trackCategory"
+      >
+        <div class="cards-container">
+          <h1 class="category-heading">{{ category }}</h1>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <ng-container
+              *ngFor="let product of products; trackBy: trackProduct"
+            >
+              <ng-container *ngIf="product.category == category">
+                <product-card
+                  [productDetails]="product"
+                  (change)="addToCart($event)"
+                ></product-card>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container> -->
+    <div class="filters-container" *ngIf="!isDataFetching">
+      <select
+        class="dropdown btn btn-light"
+        (change)="onCategoryChange($event)"
+        [(ngModel)]="filters.category"
+      >
+        <option value="selectCategory" default>Select category</option>
+        <option
+          *ngFor="let category of categoriesList"
+          class="dropdown-item"
+          [value]="category"
+        >
+          {{ category }}
+        </option>
+      </select>
+
+      <div class="d-flex search-container" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          [(ngModel)]="filters.searchValue"
+        />
+        <button
+          class="btn btn-outline-primary"
+          type="submit"
+          (click)="onClickSearch()"
+        >
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="cards-container" *ngIf="!isDataFetching">
+      <ng-container *ngIf="displayProductsList.length > 0">
+        <ul class="row row-cols-1 row-cols-md-3 g-4 categories-list">
+          <li *ngFor="let product of displayProductsList">
+            <product-card
+              [productDetails]="product"
+              (change)="addToCart($event)"
+            ></product-card>
+          </li>
+        </ul>
+      </ng-container>
+      <ng-container *ngIf="displayProductsList.length === 0">
+        <div class="empty-products-list">
+          <h1 class="no-products-found">No products found...</h1>
+          <p class="no-product-text">
+            Click me at the end i'll show the products for you..<button
+              (click)="resetFilters()"
+              class="btn btn-primary"
+            ></button>
+          </p>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

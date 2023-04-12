@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+.header-container {
+  height: 10vh;
+  padding: 20px;
+  width: 100vw;
+  background-color: rgb(12, 12, 12);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-body {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-app-name-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-decoration: none;
+}
+.app-logo {
+  width: 10%;
+  background-color: black;
+}
+.app-name {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0px;
+}
+sub {
+  font-size: 12px;
+}
+.nav-right-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-icon {
+  font-size: 30px;
+  color: #fff;
+}
+.user-icon {
+  color: #fff;
+  font-size: 35px;
+  margin-right: 20px;
+}

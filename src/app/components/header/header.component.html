@@ -1,0 +1,32 @@
+<div class="header-container">
+  <div class="header-body">
+    <a [routerLink]="['/home']" class="logo-app-name-container">
+      <img
+        class="app-logo"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUmlOuLj7naYrhDrbxMkCEx0hpL-GhAThmy3QwHAMaGIckOnSx-ONC8zNxt3YlLrB9H78&usqp=CAU"
+        alt="app-logo"
+      />
+      <h1 class="app-name">THIS<sub>Mart</sub></h1>
+    </a>
+    <div class="nav-right-container">
+      <i
+        class="bi bi-person-circle user-icon"
+        routerLink="/profile"
+        ngbTooltip="Welcome {{ userName }}"
+      ></i>
+      <a routerLink="/cart" class="position-relative me-3">
+        <i class="bi bi-cart3 cart-icon"></i>
+        <span
+          class="position-absolute top-0 start-100 translate-middle"
+          style="color: aliceblue"
+        >
+          {{ myCartCount }}
+          <span class="visually-hidden">unread messages</span>
+        </span>
+      </a>
+      <button class="btn btn-outline-primary" (click)="logout()">
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</div>

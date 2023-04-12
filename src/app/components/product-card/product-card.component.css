@@ -1,0 +1,43 @@
+.custom-image {
+  height: 300px;
+}
+.cost-rating-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.custom-card {
+  background-color: #ffffff;
+  color: black;
+  height: 100%;
+}
+
+.price {
+  font-size: 26px;
+  font-weight: bold;
+}
+.rating {
+  font-size: 14px;
+}
+.bi-star-fill {
+  color: gold;
+}
+.card-footer:hover {
+  background-color: cadetblue;
+  cursor: pointer;
+  color: #ffffff;
+}
+.cart-button {
+  border: none;
+  outline: none;
+}
+.cards-container {
+  width: 100%;
+}
+.read-more-button {
+  border: none;
+  outline: none !important;
+  background-color: transparent;
+  font-weight: bold;
+}

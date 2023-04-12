@@ -1,0 +1,53 @@
+<div class="login-form-main-container">
+  <div class="form-container">
+    <h1 class="login-heading">Login to THIS</h1>
+    <div *ngIf="errorMsg !== ''" class="errorMsg">{{ errorMsg }}</div>
+    <form #formGroup="ngForm" (ngSubmit)="onClickSubmit(formGroup.value)">
+      <div class="form-group mb-3">
+        <label for="userName">User Name</label>
+        <input
+          type="text"
+          id="userName"
+          class="form-control"
+          placeholder="Enter Name"
+          #userName="ngModel"
+          ngModel
+          name="userName"
+          minlength="4"
+          required
+        />
+        <div *ngIf="userName.touched">
+          <span class="error-msg" *ngIf="userName.pristine"
+            >User name is required field</span
+          >
+          <span class="error-msg" *ngIf="userName.invalid">
+            User name must have atleast
+            {{ 4 }} characters.
+          </span>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          placeholder="Enter password"
+          name="password"
+          #password="ngModel"
+          ngModel
+          required
+        />
+        <div *ngIf="password.touched">
+          <span class="error-msg" *ngIf="password.invalid"
+            >Password is required</span
+          >
+        </div>
+      </div>
+      <button [disabled]="formGroup.invalid" class="btn btn-primary mt-2">
+        Submit
+      </button>
+      <!-- <p>{{ errorMsg }}</p> -->
+    </form>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="col h-100">
+  <div class="card">
+    <a
+      [routerLink]="[
+        '/product',
+        productDetails.category,
+        productDetails.title,
+        productDetails.id
+      ]"
+      routerLinkActive="router-link-active"
+    >
+      <img
+        src="{{ productDetails.thumbnail }}"
+        class="card-img-top custom-image"
+        alt="..."
+      />
+    </a>
+    <div class="card-body">
+      <h5 class="card-title">{{ productDetails.title }}</h5>
+      <p class="card-text" *ngIf="isContentHidden === true">
+        {{ productDetails.description | summary }}
+        <button
+          class="read-more-button"
+          (click)="isContentHidden = !isContentHidden"
+        >
+          ...Show more
+        </button>
+      </p>
+      <p class="card-text" *ngIf="isContentHidden == false">
+        {{ productDetails.description }}
+        <button
+          class="read-more-button"
+          (click)="isContentHidden = !isContentHidden"
+        >
+          ...Show less
+        </button>
+      </p>
+
+      <div class="cost-rating-container">
+        <span class="price">
+          <i class="bi bi-currency-rupee"></i>
+          {{ productDetails.price }}</span
+        >
+        <span class="badge bg-primary rating">
+          <i class="bi bi-star-fill"></i>
+          {{ productDetails.rating }}
+        </span>
+      </div>
+    </div>
+    <button
+      *ngIf="isProductAvailableInCart"
+      type="button"
+      class="card-footer cart-button"
+      routerLink="/cart"
+    >
+      Go to Cart
+    </button>
+    <button
+      *ngIf="!isProductAvailableInCart"
+      type="button"
+      class="card-footer cart-button"
+      (click)="onClickAddToCart()"
+    >
+      Add to Cart
+    </button>
+  </div>
+</div>

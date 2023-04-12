@@ -1,0 +1,21 @@
+<div class="main-profile-container">
+  <app-header class="fixed-top" [myCartCount]="myCartCount"></app-header>
+  <div class="sub-container">
+    <div class="profile-body">
+      <h1 class="heading">Your Account</h1>
+      <ul class="profile-navs-list">
+        <li class="nav-item" *ngFor="let item of navItemsList">
+          <a [routerLink]="[item.link]">
+            <div class="nav-details-container">
+              <img [src]="item.imgUrl" alt="img" class="icon-styles" />
+              <div class="text-container">
+                <h6>{{ item.heading }}</h6>
+                <p>{{ item.description }}</p>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

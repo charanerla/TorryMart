@@ -1,0 +1,84 @@
+<div class="cart-container">
+  <app-header class="fixed-top" [myCartCount]="cartCount"></app-header>
+  <div class="cart-body">
+    <ng-container *ngIf="myCart.length > 0">
+      <h1  class="cart-heading">My cart</h1>
+      <ul class="cart-list g-6">
+        <li class="card mb-3 col-12 col-md-6" *ngFor="let item of myCart">
+          <div class="row g-0 custom-height">
+            <div class="col-md-4 custom-height1">
+              <a
+                [routerLink]="['/product', item.category, item.title, item.id]"
+              >
+                <img
+                  src="{{ item.thumbnail }}"
+                  class="img-fluid rounded-start h-100 w-100"
+                  alt="..."
+                />
+              </a>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <p class="card-text">{{ item.description | summary }}...</p>
+                <h3>
+                  <sup class="custom-sup"
+                    ><i class="bi bi-currency-rupee"></i></sup
+                  >{{ item.price }}<sup class="custom-sup">00</sup>
+                </h3>
+                <div class="quantity-delete-container">
+                  <div class="quantity-buttons-container col col-md-4">
+                    <button
+                      type="button"
+                      *ngIf="item.quantity == 1"
+                      class="qnt-buttons"
+                      (click)="onClickTrash(item.id)"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                    <button
+                      type="button"
+                      class="qnt-buttons decrement"
+                      *ngIf="item.quantity > 1"
+                      (click)="onClickDecrement(item.id)"
+                    >
+                      -
+                    </button>
+                    <span class="product-quantity">{{ item.quantity }}</span>
+                    <button
+                      type="button"
+                      class="qnt-buttons increment"
+                      (click)="onClickIncrement(item.id)"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      class="delete-button mx-2"
+                      (click)="onClickBuyNow(item.id)"
+                    >
+                      Buy now
+                    </button>
+                    <button
+                      type="button"
+                      class="delete-button"
+                      (click)="onClickTrash(item.id)"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+    <div *ngIf="myCart.length === 0" class="empty-cart-container">
+      <h1>Yet To Add</h1>
+      <sub><a [routerLink]="['/home']">Click Here</a></sub>
+    </div>
+  </div>
+</div>

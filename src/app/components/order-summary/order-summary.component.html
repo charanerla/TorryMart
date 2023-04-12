@@ -1,0 +1,157 @@
+<div class="main-container" [ngClass]="{ 'order-successfull': isOrderPlaced }">
+  <div class="sub-container">
+    <ng-container *ngIf="!isOrderPlaced">
+      <h1 class="heading">Order summary</h1>
+      <div class="body">
+        <!-- <div class="product-container">
+                <img [src]="currentOrderObject.thumbnail" class="product-img"/>
+                <h3>{{currentOrderObject.title}}</h3>
+            </div>
+            <div class="summary">
+
+            </div> -->
+        <div class="card mb-3 col-12">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                src="{{ currentOrderObject.thumbnail }}"
+                class="img-fluid rounded-start h-100 w-100"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ currentOrderObject.title }}</h5>
+                <p class="card-text">{{ currentOrderObject.description }}...</p>
+                <div class="price-rating-container">
+                  <h3>
+                    <i class="bi bi-currency-rupee"></i
+                    >{{ currentOrderObject.price
+                    }}<sup class="custom-sup">00</sup>
+                  </h3>
+                  <span class="badge bg-primary rating">
+                    <i class="bi bi-star-fill"></i>
+                    {{ currentOrderObject.rating }}
+                  </span>
+                </div>
+                <span>Quantity:</span>
+                <select
+                  [(ngModel)]="currentOrderObject.quantity"
+                  (change)="onChangeQuantity($event)"
+                  class="quantity-dropdown btn btn-secondary mx-3"
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="delivery-details-container mt-3">
+          <h3 class="heading">Delivery Details</h3>
+          <div class="delivery-address-container">
+            <div class="delivery-section mb-1 mt-2">
+              <h6 class="heading">Delivery to:</h6>
+              <button type="button" class="btn btn btn-outline-info">
+                Change
+              </button>
+            </div>
+            <h6 class="heading">{{ address.name }}</h6>
+            <p>
+              {{ address.building }}, {{ address.street }},
+              {{ address.area }},{{ address.city }}, {{ address.state }}
+              {{ address.pincode }}
+            </p>
+            <div class="delivery-section mb-1">
+              <span>Payment Mode:</span><span>Cash on delivery</span>
+            </div>
+          </div>
+        </div>
+        <div class="price-details-container mt-3">
+          <h3 class="heading">Price Details</h3>
+          <div class="price-section mb-1">
+            <span>Price (1 item)</span
+            ><span
+              ><i class="bi bi-currency-rupee"></i
+              >{{ currentOrderObject.price }}</span
+            >
+          </div>
+          <div class="price-section mb-1">
+            <span>Delivery Charges</span
+            ><span style="color: green">FREE Delivery</span>
+          </div>
+          <hr />
+          <div class="price-section mb-1">
+            <span>Total Amount</span
+            ><span
+              ><i class="bi bi-currency-rupee"></i
+              >{{
+                currentOrderObject.price * currentOrderObject.quantity
+              }}</span
+            >
+          </div>
+          <hr />
+        </div>
+        <div style="text-align: right">
+          <button
+            type="button"
+            class="btn btn-info"
+            (click)="onClickPlaceOrder()"
+          >
+            Place order
+          </button>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isOrderPlaced">
+      <div class="order-successfull-container">
+        <div style="text-align: center">
+          <img
+            class="successful-img"
+            src="data:image/jpeg;base64,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"
+          />
+        </div>
+        <div class="successfull-section mb-1 mt-2">
+          <h6 class="heading">Order ID :</h6>
+          <span>123456</span>
+        </div>
+        <div class="successfull-section mb-1 mt-2">
+          <h6 class="heading">Product name :</h6>
+          <span>{{ currentOrderObject.title }}</span>
+        </div>
+        <div class="successfull-section mb-1 mt-2">
+          <h6 class="heading">Price :</h6>
+          <span>{{ currentOrderObject.price }}</span>
+        </div>
+
+        <div class="successfull-section mb-1 mt-2">
+          <h6 class="heading">Quantity :</h6>
+          <span>{{ currentOrderObject.quantity }}</span>
+        </div>
+        <div class="successfull-section mb-1 mt-2">
+          <h6 class="heading">Delivered By :</h6>
+          <span>{{ deliveryBy }}</span>
+        </div>
+        <hr />
+        <div class="successfull-section mb-1 mt-2">
+          <h6 class="heading">Total cost :</h6>
+          <span>{{
+            currentOrderObject.price * currentOrderObject.quantity
+          }}</span>
+        </div>
+        <hr />
+      </div>
+      <h1 class="text-center">
+        Thank you <a [routerLink]="['/home']">Shop more</a>
+      </h1>
+    </ng-container>
+  </div>
+</div>

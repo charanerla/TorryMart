@@ -1,0 +1,67 @@
+<div class="specific-product-main-container">
+  <app-header class="fixed-top" [myCartCount]="myCartCount"></app-header>
+  <div class="specific-component-body">
+    <div class="products-container">
+      <div class="card mb-3 col-12">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img
+              src="{{ productDetails.thumbnail }}"
+              class="img-fluid rounded-start h-100 w-100"
+              alt="..."
+            />
+          </div>
+
+          <div class="col-md-8 custom-style-for-spacing">
+            <div class="card-body w-100">
+              <h5 class="card-title">{{ productDetails.title }}</h5>
+              <p class="card-text">{{ productDetails.description }}...</p>
+              <div class="price-rating-container">
+                <h3>
+                  <i class="bi bi-currency-rupee"></i>{{ productDetails.price
+                  }}<sup class="custom-sup">00</sup>
+                </h3>
+                <span class="badge bg-primary rating">
+                  <i class="bi bi-star-fill"></i>
+                  {{ productDetails.rating }}
+                </span>
+              </div>
+            </div>
+            <div class="card-footer w-100 custom-styles-footer">
+              <button
+                class="custom-buttons"
+                *ngIf="isSpcificProductInCart"
+                routerLink="/cart"
+              >
+                Go to Cart
+              </button>
+              <button
+                class="custom-buttons"
+                *ngIf="!isSpcificProductInCart"
+                (click)="addToCart(productDetails)"
+              >
+                Add to cart
+              </button>
+              <button class="custom-buttons" (click)="onClickBuyNow()">
+                Buy now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="similar-products">
+        <h1 style="color: aliceblue">Similar products</h1>
+        <ng-container *ngIf="similarProducts.length > 0">
+          <ul class="row row-cols-1 row-cols-md-3 g-4 categories-list">
+            <li *ngFor="let product of similarProducts">
+              <product-card
+                [productDetails]="product"
+                (change)="addToCart($event)"
+              ></product-card>
+            </li>
+          </ul>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
