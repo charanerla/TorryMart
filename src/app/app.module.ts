@@ -1,31 +1,20 @@
 import { Component, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/auth/login/login-form.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './components/home/home/home.component';
 import { RouterModule } from '@angular/router';
 import { UsersServive } from './services/users.service';
-import { HeaderComponent } from './components/header/header.component';
 import { CategoriesService } from './services/categories.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CartComponent } from './components/cart/cart.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
-import { SummaryPipe } from './customPipes/summary.pipe';
-import { SpecificProductComponent } from './components/specific-product/specific-product.component';
+
 import { AppErrorHandler } from './common/app-error-handler';
 import {
   ToastrModule,
   ToastNoAnimation,
   ToastNoAnimationModule,
 } from 'ngx-toastr';
-import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
-import { OrdersComponent } from './components/orders/orders.component';
-import { AddressesComponent } from './components/addresses/addresses.component';
-import { ProfileComponent } from './components/profile/profile.component';
+
 import { DummyComponent } from './components/dummy/dummy.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { LoginGuardService } from './services/login-guard.service';
@@ -33,12 +22,7 @@ import { OrderSummaryAuthGuardService } from './services/order-summary-auth-guar
 import { LoginAndSecurityComponent } from './components/login-and-security/login-and-security.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AddressesComponent,
-    DummyComponent,
-    LoginAndSecurityComponent,
-  ],
+  declarations: [AppComponent, DummyComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -101,6 +85,14 @@ import { LoginAndSecurityComponent } from './components/login-and-security/login
         canActivate: [AuthGuardService],
       },
       {
+        path: 'profile/addresses',
+        loadComponent: () =>
+          import('./components/addresses/addresses.component').then(
+            (component) => component.AddressesComponent
+          ),
+        canActivate: [AuthGuardService],
+      },
+      {
         path: 'profile',
         loadComponent: () =>
           import('./components/profile/profile.component').then(
@@ -115,6 +107,13 @@ import { LoginAndSecurityComponent } from './components/login-and-security/login
             (component) => component.OrderSummaryComponent
           ),
         canActivate: [AuthGuardService, OrderSummaryAuthGuardService],
+      },
+      {
+        path: '**',
+        loadComponent: () =>
+          import('./components/not-found-page/not-found-page.component').then(
+            (component) => component.NotFoundPageComponent
+          ),
       },
     ]),
   ],
