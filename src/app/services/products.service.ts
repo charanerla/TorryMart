@@ -19,9 +19,9 @@ export class ProductsService {
 
   private handleError(error: Response) {
     if (error.status === 404) {
-      return throwError(new NotFoundError());
+      return throwError(() => new NotFoundError());
     } else if (error.status === 400) {
-      return throwError(new BadRequestError());
+      return throwError(() => new BadRequestError());
     } else if (error.status === 0) {
       return throwError(new NetworkError());
     } else if (error.status >= 500 && error.status <= 599) {
