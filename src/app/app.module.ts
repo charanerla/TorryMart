@@ -116,12 +116,17 @@ import { LoginAndSecurityComponent } from './components/login-and-security/login
           ),
         canActivate: [AuthGuardService, OrderSummaryAuthGuardService],
       },
+
       {
-        path: '**',
+        path: 'page-not-found',
         loadComponent: () =>
           import('./components/not-found-page/not-found-page.component').then(
             (component) => component.NotFoundPageComponent
           ),
+      },
+      {
+        path: '**',
+        redirectTo: 'page-not-found',
       },
     ]),
   ],
