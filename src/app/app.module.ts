@@ -93,6 +93,14 @@ import { LoginAndSecurityComponent } from './components/login-and-security/login
         canActivate: [AuthGuardService],
       },
       {
+        path: 'profile/contact-us',
+        loadComponent: () =>
+          import('./components/contact-us/contact-us.component').then(
+            (component) => component.ContactUsComponent
+          ),
+        canActivate: [AuthGuardService],
+      },
+      {
         path: 'profile',
         loadComponent: () =>
           import('./components/profile/profile.component').then(

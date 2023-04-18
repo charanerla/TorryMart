@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AppError } from 'src/app/common/app-error';
 import { BadRequestError } from 'src/app/common/badRequest-error';
 import { NetworkError } from 'src/app/common/network-error';
@@ -19,7 +19,7 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   templateUrl: './specific-product.component.html',
   styleUrls: ['./specific-product.component.css'],
   standalone: true,
-  imports: [CommonModule, HeaderComponent, ProductCardComponent],
+  imports: [CommonModule, HeaderComponent, ProductCardComponent, RouterModule],
 })
 export class SpecificProductComponent implements OnInit {
   myCartCount: number = 0;
